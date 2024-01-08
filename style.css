@@ -19,14 +19,14 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 120vh;
 }
 .container{
   border-radius: 10px 10px 200px 10px;
   background-color: white;
   width: 50%;
   padding: 50px;
-  height: 73vh;
+  height: 80vh;
 }
 .inputs div {
     display: flex;
@@ -57,26 +57,17 @@ main{
 }
 .line {
   border-bottom: 1px solid rgb(190, 190, 190);
-  width: 89%;
+  width: 80%;
   
 }
-.image img{
-  margin-right: 0;
-  background-color: black;
-  border-radius: 50%;
-  padding: 10px;
-}
-.display{
-  display: flex;
-  flex-direction: column;
-  
-}
-span{
-  font-family: Poppins-ExtraBold;
-  width: 30%;
-  border: none;
-  text-align: center;
+.display span {
   font-size: 4rem;
-  background-color: white;
-  margin-right: 20px;;
+  color: blueviolet;
+}
+
+.display p {
+  font-family: Poppins-BoldItalic;
+  font-size: 4rem;
+  width: fit-content;
+  margin: 0;
 }
