@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="style.css">
-  
-  <title>Frontend Mentor | Age calculator app</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <title>Frontend Mentor | Age calculator app</title>
 
-<main>
-<div class="container">
-    <div class="inputs">
-  <div class="day">
-    <label for="day">Day</label>
-    <input type="text" id="day" placeholder="DD" maxlength="2">
-    <p style="color: red" id="error_message_day"></p>
-  </div>   
-  <div class="month">
-    <label for="month">Month</label>
-    <input type="text" id="month" placeholder="MM" maxlength="2">
-    <p style="color: red" id="error_message_month"></p>
-  </div> 
-  <div class="year">
-    <label for="year">Year</label>
-    <input type="text" id="year" placeholder="YYYY" maxlength="4">
-    <p style="color: red" id="error_message_year"></p>
-  </div> 
-</div>
-  <div class="image"> 
-    <div class="line"></div><img src="./assets/images/favicon-32x32.png" id="image" alt="arrow" srcset="">
-  </div>
-    <div class="display">
-       <p><span id="display-years">--</span>years</p>
-       <p><span id="display-months">--</span>months</p>
-       <p><span id="display-days">--</span>days</p>
-    </div>  
-  </div>
-</main>
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Kes</a>.
-  </div>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <section class="inputs">
+          <div>
+            <label for="day">DAY</label> <input type="text" placeholder="DD" id="day" maxlength="2" />
+            <p style="color: red" id="error_message_day"></p>
+          </div>
+          <div>
+            <label for="month">MONTH</label> <input type="text" placeholder="MM" id="month" maxlength="2" />
+            <p style="color: red" id="error_message_month"></p>
+          </div>
+          <div>
+            <label for="year">YEAR</label> <input type="text" placeholder="YYYY" id="year" maxlength="4" />
+            <p style="color: red" id="error_message_year"></p>
+          </div>
+        </section>
+        <div class="icon-section">
+          <div class="line"></div>
+          <img id="arrow" src="./assets/images/icon-arrow.svg" alt="" />
+        </div>
+        <section class="outputs">
+          <p><span id="output_year">--</span>years</p>
+          <p><span id="output_month">--</span>months</p>
+          <p><span id="output_day">--</span>days</p>
+        </section>
+      </div>
+      <script src="./script.js"></script>
+    </main>
 
-<script src="script.js" ></script>
-</body>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by
+      <a href="#">Kes</a>.
+    </div>
+  </body>
 </html>
