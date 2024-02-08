@@ -1,69 +1,95 @@
-var year = document.getElementById("year");
-var month = document.getElementById("month");
-var day = document.getElementById("day");
-var submit = document.getElementById("image");
+const day = document.getElementById('day')
+const month = document.getElementById('month')
+const year = document.getElementById('year')
+const arrow = document.getElementById('arrow')
 
-//output variables
-var output__year = document.getElementById("display-years");
-var output__month = document.getElementById("display-month");
-var output__day = document.getElementById("display-day");
+const errorMessageDay = document.getElementById('error_message_day')
+const errorMessageMonth = document.getElementById('error_message_month')
+const errorMessageYear = document.getElementById('error_message_year')
 
-//error placeholder declaration
-var errorMessageDay = document.getElementById("error_message_day");
-var errorMessageMonth = document.getElementById("error_message_month");
-var errorMessageYear = document.getElementById("error_message_year");
+const yearOuput = document.getElementById('output_year')
+const monthOuput = document.getElementById('output_month')
+const dayOuput = document.getElementById('output_day')
 
-const currentDate = new Date();
 
-day.addEventListener("input", () => {
-  nextFunction();
-});
 
-month.addEventListener("input", () => {
-  nextFunction();
-});
+const dataHoje = new Date()
 
-submit.addEventListener("click", (e) => {
-  errorMessageDay.innerText = "";
-  errorMessageMonth.innerText = "";
-  errorMessageYear.innerText = "";
+day.addEventListener('input', () => {
+    focusNext();
+})
 
-  if (day.value == "" || month.value == "" || year.value == "") {
-    e.preventDefault();
-    if ((day.value = "")) {
-      errorMessageDay.innerHTML = "This field is required";
+month.addEventListener('input', () => {
+    focusNext();
+})
+
+
+arrow.addEventListener('click', (e) => {
+    errorMessageDay.innerText = ''
+    errorMessageMonth.innerText = ''
+    errorMessageYear.innerText = ''
+    if (day.value == '' || month.value == '' || year.value == '') {
+        e.preventDefault()
+        if (day.value == '') {
+            errorMessageDay.innerText = 'this field is required'
+        }
+        if (month.value == '') {
+            errorMessageMonth.innerText = 'this field is required'
+        }
+        if (year.value == '') {
+            errorMessageYear.innerText = 'this field is required'
+        }
+
+    } else if (year.value > dataHoje.getFullYear()) {
+        e.preventDefault()
+        errorMessageYear.innerText = "Must be in the past"
+        year.value = ''
+    } else if (month.value > 12) {
+        e.preventDefault()
+        errorMessageMonth.innerText = 'Must be a valid Month'
+        month.value = ''
+    } else if (day.value > 31) {
+        e.preventDefault()
+        errorMessageDay.innerText = 'must be a valid Day'
+        day.value = ''
+    } else {
+        calculaIdade(year.value, month.value, day.value)
     }
-    if ((month.value = "")) {
-      errorMessageMonth.innerHTML = "This field is required";
+})
+
+function calculaIdade(year, month, day) {
+
+    if (month > (dataHoje.getMonth() + 1)) {
+        yearOuput.textContent = dataHoje.getFullYear() - year - 1
+    } else if (month == (dataHoje.getMonth() + 1) && day > dataHoje.getDate()) {
+        yearOuput.textContent = dataHoje.getFullYear() - year - 1
+    } else {
+        yearOuput.textContent = dataHoje.getFullYear() - year
     }
-    if ((year.value = "")) {
-      errorMessageYear.innerHTML = "This field is required";
+
+    if (month > (dataHoje.getMonth() + 1)) {
+        monthOuput.textContent = 12 + ((dataHoje.getMonth() + 1) - month)
+    } else {
+        monthOuput.textContent = (dataHoje.getMonth() + 1) - month
     }
-  } else if (year.value > currentDate.getFullYear()) {
-    e.preventDefault();
-    errorMessageYear.innerHTML = "Must be in the past";
-    year.value = "";
-  } else if (month.value > 12) {
-    e.preventDefault();
-    errorMessageMonth.innerHTML = "Must be a valid month";
-    month.value = "";
-  } else if (day.value > 31) {
-    e.preventDefault();
-    errorMessageDay.innerHTML = "Must be a valid date";
-    day.value = "";
-  } else {
-    calculateDate(year.value, month.value, day.value);
-  }
-});
-function calculateDate(year, month, day) {
-  if (month > currentDate.getMonth() + 1) {
-    output__year.textContent = currentDate.getFullYear() - year - 1;
-  } else if (
-    month == currentDate.getMonth() + 1 &&
-    day > currentDate.getDate()
-  ) {
-    output__year.textContent = currentDate.getFullYear() - year;
-  } else {
-    output__year.textContent = currentDate.getFullYear() - year;
-  }
+
+    if (day > dataHoje.getDate() && month % 2 !== 0 || (dataHoje.getMonth() + 1) == 8) {
+        dayOuput.textContent = 31 - (day - dataHoje.getDate())
+    } else if (day < dataHoje.getDate() && month % 2 !== 0 || (dataHoje.getMonth() + 1) == 8) {
+        dayOuput.textContent = 31 + (day - dataHoje.getDate())
+    } else if (day > dataHoje.getDate() && month % 2 == 0 && (dataHoje.getMonth() + 1) !== 8) {
+        dayOuput.textContent = 30 - (day - dataHoje.getDate())
+    } else if (day < dataHoje.getDate() && month % 2 == 0 && (dataHoje.getMonth() + 1) !== 8) {
+        dayOuput.textContent = - (day - dataHoje.getDate())
+    }
+}
+
+function focusNext() {
+    if (day.value.length === day.maxLength) {
+        month.focus();
+    }
+
+    if (month.value.length === month.maxLength) {
+        year.focus();
+    }
 }
